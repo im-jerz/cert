@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificate of Completion</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: #333;
+      }
+
+      .certificate {
+        width: 1100px;
+        background-color: #f8f9fb;
+        padding: 40px 60px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 70px;
+      }
+
+      .udemy-logo {
+        height: 75px;
+      }
+
+      .certificate-info {
+        text-align: right;
+        font-size: 14px;
+        color: #666;
+        line-height: 1.6;
+        font-weight: 500;
+      }
+
+      .certificate-title {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #666;
+        margin-bottom: 10px;
+      }
+
+      .course-title {
+        font-size: 80px;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 30px;
+      }
+
+      .instructors {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 40px;
+      }
+
+      .instructor-label {
+        font-weight: 400;
+        color: black;
+        margin-right: 5px;
+      }
+
+      .recipient-name {
+        font-size: 55px;
+        font-weight: 700;
+        padding-top: 100px;
+      }
+
+      .details {
+        font-size: 20px;
+      }
+
+      .detail-label {
+        font-weight: 400;
+        display: inline-block;
+        width: 65px;
+      }
+
+      .detail-value {
+        font-weight: 700;
+      }
+
+      .download-btn {
+        margin-top: 20px;
+        padding: 12px 24px;
+        background: #007bff;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .download-btn:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="certificate" class="certificate">
+      <div class="header">
+        <img
+          src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg"
+          alt="Udemy Logo"
+          class="udemy-logo"
+          crossorigin="anonymous"
+        />
+        <div class="certificate-info">
+          Certificate no: <span id="cert-no"></span><br />
+          Certificate url: ude.my/<span id="cert-url"></span><br />
+          Reference Number: 0004
+        </div>
+      </div>
+
+      <div class="certificate-title">CERTIFICATE OF COMPLETION</div>
+
+      <div class="course-title">Mastering Human Computer Interaction (HCI)</div>
+
+      <div class="instructors">
+        <span class="instructor-label">Instructors</span>
+        <span class="instructor-value">Ray Lutzky</span>
+      </div>
+
+      <div class="recipient-name">John Rey Carlo A. Gemao</div>
+
+      <div class="details">
+        <div>
+          <span class="detail-label">Date</span>
+          <span class="detail-value">Oct. 26, 2025</span>
+        </div>
+        <div>
+          <span class="detail-label">Length</span>
+          <span class="detail-value">3 total hours</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="download-btn" id="download">Download Certificate</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script>
+      function generateUCString(template, numberBias = 0.7) {
+        const letters = "abcdefghijklmnopqrstuvwxyz";
+        const numbers = "0123456789";
+        let result = "UC-";
+
+        for (let i = 3; i < template.length; i++) {
+          let currentChar = template[i];
+          if (currentChar === "-") {
+            result += "-";
+          } else {
+            if (Math.random() < numberBias) {
+              const randomNum =
+                numbers[Math.floor(Math.random() * numbers.length)];
+              result += randomNum;
+            } else {
+              const randomLetter =
+                letters[Math.floor(Math.random() * letters.length)];
+              result += randomLetter;
+            }
+          }
+        }
+        return result;
+      }
+
+      function getRandomDate() {
+        const start = new Date(2025, 9, 20);
+        const end = new Date(2025, 10, 8);
+        const randomTime =
+          start.getTime() + Math.random() * (end.getTime() - start.getTime());
+        const randomDate = new Date(randomTime);
+
+        const months = [
+          "Jan.",
+          "Feb.",
+          "Mar.",
+          "Apr.",
+          "May",
+          "Jun.",
+          "Jul.",
+          "Aug.",
+          "Sep.",
+          "Oct.",
+          "Nov.",
+          "Dec.",
+        ];
+        return `${
+          months[randomDate.getMonth()]
+        } ${randomDate.getDate()}, ${randomDate.getFullYear()}`;
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const template = "UC-1fd18d16-9758-49ba-8da7-265cd9fcebed";
+
+        const names = [
+          "Xian John David Dawinan",
+          "Andre John Miguel L. Fraga",
+          "Alfonso Eisac M. Deang",
+          "Ace Eljohn G. Eledana",
+          "Michaell Bravante",
+          "Gwen Marco Navarette",
+          "Erwin Klyde Buenaventura",
+          "CJ Obar",
+          "Patricia Merjudio",
+          "Vince Itura",
+          "Roy Surbano",
+          "Carl Kenneth Manlangit",
+          "Michael Josh Rombano",
+          "Lorrenz Eduarte",
+          "Alyssa May M. Balatibat",
+          "Arianna Marie Grimaldo",
+          "Aleeiah Denise Sobreviñas",
+          "Jackie Sy",
+        ];
+
+        let currentIndex = 0;
+
+        function getBase64FromUrl(url) {
+          return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.onload = () => {
+              const canvas = document.createElement("canvas");
+              const ctx = canvas.getContext("2d");
+              canvas.height = img.naturalHeight;
+              canvas.width = img.naturalWidth;
+              ctx.drawImage(img, 0, 0);
+              resolve(canvas.toDataURL());
+            };
+            img.onerror = reject;
+            img.src = url + "?v=" + new Date().getTime();
+          });
+        }
+
+        getBase64FromUrl(
+          "https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg"
+        )
+          .then((base64) => {
+            document.querySelector(".udemy-logo").src = base64;
+          })
+          .catch((error) => console.warn("Could not load Udemy logo:", error));
+
+        document
+          .getElementById("download")
+          .addEventListener("click", function () {
+            document.querySelector(".recipient-name").textContent =
+              names[currentIndex];
+
+            const newCert = generateUCString(template);
+            document.getElementById("cert-no").textContent = newCert;
+            document.getElementById("cert-url").textContent = newCert;
+
+            const newDate = getRandomDate();
+            document.querySelector(".details .detail-value").textContent =
+              newDate;
+
+            const certificate = document.getElementById("certificate");
+            html2canvas(certificate, {
+              scale: 2,
+              useCORS: true,
+              allowTaint: false,
+            }).then((canvas) => {
+              const link = document.createElement("a");
+              link.download = `${names[currentIndex]}-certificate.png`;
+              link.href = canvas.toDataURL("image/png");
+              link.click();
+
+              currentIndex = (currentIndex + 1) % names.length;
+            });
+          });
+      });
+    </script>
+  </body>
+</html>
